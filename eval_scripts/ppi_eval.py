@@ -92,7 +92,7 @@ if __name__ == '__main__':
         test_embeds = embeds[[id_map[id] for id in test_ids]] 
         
         
-        df = pd.DataFrame(data=train_feats.astype(float))
+        df = pd.DataFrame(data=train_embeds.astype(float))
         df.to_csv('../train_embeds.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
