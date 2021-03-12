@@ -1,6 +1,7 @@
 from __future__ import print_function
 import json
 import numpy as np
+import pandas as pd
 
 from networkx.readwrite import json_graph
 from argparse import ArgumentParser
@@ -65,12 +66,21 @@ if __name__ == '__main__':
         feat_id_map = {int(id):val for id,val in feat_id_map.iteritems()}
         train_feats = feats[[feat_id_map[id] for id in train_ids]] 
         test_feats = feats[[feat_id_map[id] for id in test_ids]] 
+        
+        df = pd.DataFrame(data=train_feats.astype(float))
+        df.to_csv('../train_embeds.csv', sep=',', header=False, index=False)
+        
         print("Running regression..")
         from sklearn.preprocessing import StandardScaler
         scaler = StandardScaler()
         scaler.fit(train_feats)
         train_feats = scaler.transform(train_feats)
         test_feats = scaler.transform(test_feats)
+        
+        
+        df = pd.DataFrame(data=train_feats.astype(float))
+        df.to_csv('../train_embeds_scaled.csv', sep=',', header=False, index=False)
+        
         run_regression(train_feats, train_labels, test_feats, test_labels)
     else:
         embeds = np.load(data_dir + "/val.npy")
@@ -80,6 +90,10 @@ if __name__ == '__main__':
                 id_map[int(line.strip())] = i
         train_embeds = embeds[[id_map[id] for id in train_ids]] 
         test_embeds = embeds[[id_map[id] for id in test_ids]] 
+        
+        
+        df = pd.DataFrame(data=train_feats.astype(float))
+        df.to_csv('../train_embeds.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
         run_regression(train_embeds, train_labels, test_embeds, test_labels)
