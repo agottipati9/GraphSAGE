@@ -68,7 +68,7 @@ if __name__ == '__main__':
         test_feats = feats[[feat_id_map[id] for id in test_ids]] 
         
         df = pd.DataFrame(data=train_feats.astype(float))
-        df.to_csv('../train_embeds.csv', sep=',', header=False, index=False)
+        df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
         
         print("Running regression..")
         from sklearn.preprocessing import StandardScaler
@@ -77,9 +77,8 @@ if __name__ == '__main__':
         train_feats = scaler.transform(train_feats)
         test_feats = scaler.transform(test_feats)
         
-        
         df = pd.DataFrame(data=train_feats.astype(float))
-        df.to_csv('../train_embeds_scaled.csv', sep=',', header=False, index=False)
+        df.to_csv('train_embeds_scaled.csv', sep=',', header=False, index=False)
         
         run_regression(train_feats, train_labels, test_feats, test_labels)
     else:
@@ -93,7 +92,7 @@ if __name__ == '__main__':
         
         
         df = pd.DataFrame(data=train_embeds.astype(float))
-        df.to_csv('../train_embeds.csv', sep=',', header=False, index=False)
+        df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
         run_regression(train_embeds, train_labels, test_embeds, test_labels)
