@@ -23,10 +23,6 @@ def run_regression(train_embeds, train_labels, test_embeds, test_labels):
     dummy.fit(train_embeds, train_labels)
     log = MultiOutputClassifier(SGDClassifier(loss="log"), n_jobs=10)
     log.fit(train_embeds, train_labels)
-    
-    print('Train Embeds: {}'.format(train_embeds))
-    print('Train Labels: {}'.format(train_labels))
-
     f1 = 0
     for i in range(test_labels.shape[1]):
         print("F1 score", f1_score(test_labels[:,i], log.predict(test_embeds)[:,i], average="micro"))
@@ -69,6 +65,8 @@ if __name__ == '__main__':
         
         df = pd.DataFrame(data=train_feats.astype(float))
         df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
+        df = pd.DataFrame(data=train_labels.astype(float))
+        df.to_csv('train_labels.csv', sep=',', header=False, index=False)
         
         print("Running regression..")
         from sklearn.preprocessing import StandardScaler
@@ -93,6 +91,8 @@ if __name__ == '__main__':
         
         df = pd.DataFrame(data=train_embeds.astype(float))
         df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
+        df = pd.DataFrame(data=train_labels.astype(float))
+        df.to_csv('train_labels.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
         run_regression(train_embeds, train_labels, test_embeds, test_labels)
