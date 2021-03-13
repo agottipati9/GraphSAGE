@@ -10,7 +10,7 @@ chmod 666 /var/run/docker.sock
 
 echo "Finished Docker Install"
 
-add-apt-repository ppa:deadsnakes/ppa
+echo -ne '\n' | add-apt-repository ppa:deadsnakes/ppa
 apt update
 apt install -y python3.6
 apt install -y python3-pip
