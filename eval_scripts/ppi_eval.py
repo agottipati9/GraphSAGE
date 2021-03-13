@@ -50,6 +50,8 @@ if __name__ == '__main__':
     if train_labels.ndim == 1:
         train_labels = np.expand_dims(train_labels, 1)
     test_labels = np.array([labels[i] for i in test_ids])
+    df = pd.DataFrame(data=train_labels.astype(float))
+    df.to_csv('train_labels.csv', sep=',', header=False, index=False)
     print("running", data_dir)
 
     if data_dir == "feat":
@@ -65,8 +67,6 @@ if __name__ == '__main__':
         
         df = pd.DataFrame(data=train_feats.astype(float))
         df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
-        df = pd.DataFrame(data=train_labels.astype(float))
-        df.to_csv('train_labels.csv', sep=',', header=False, index=False)
         
         print("Running regression..")
         from sklearn.preprocessing import StandardScaler
@@ -91,8 +91,6 @@ if __name__ == '__main__':
         
         df = pd.DataFrame(data=train_embeds.astype(float))
         df.to_csv('train_embeds.csv', sep=',', header=False, index=False)
-        df = pd.DataFrame(data=train_labels.astype(float))
-        df.to_csv('train_labels.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
         run_regression(train_embeds, train_labels, test_embeds, test_labels)
