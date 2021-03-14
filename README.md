@@ -2,7 +2,8 @@
 - [ ] Try increasing rips dimension / tweaking eps
 - [ ] Transform persistence diagram and export features
 - [ ] concatenate with embeddings
-- [ ] train model with baseline and TDA -> plot
+- [ ] train model with baseline and TDA 
+- [ ] plot findings
 
 
 ## GraphSage: Representation Learning on Large Graphs
