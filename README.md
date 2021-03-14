@@ -4,6 +4,7 @@
 - [ ] concatenate with embeddings
 - [ ] train model with baseline and TDA 
 - [ ] plot findings
+- [ ] write script to automate this process for reproducibility
 
 
 ## GraphSage: Representation Learning on Large Graphs
