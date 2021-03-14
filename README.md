@@ -1,3 +1,10 @@
+# TODO:
+- [ ] Try increasing rips dimension / tweaking eps
+- [ ] Transform persistence diagram and export features
+- [ ] concatenate with embeddings
+- [ ] train model with baseline and TDA -> plot
+
+
 ## GraphSage: Representation Learning on Large Graphs
 
 #### Authors: [William L. Hamilton](http://stanford.edu/~wleif) (wleif@stanford.edu), [Rex Ying](http://joy-of-thinking.weebly.com/) (rexying@stanford.edu)
