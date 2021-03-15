@@ -4,7 +4,7 @@
 - [ ] concatenate persistence diagram with embeddings
 - [ ] train model with baseline and TDA
 - [ ] Try using weighted persistence diagram? or tweaking eps?
-- [ ] plot findings
+- [ ] plot cdf of findings
 - [ ] write script to automate this process for reproducibility
 
 
