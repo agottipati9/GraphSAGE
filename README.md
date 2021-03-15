@@ -1,8 +1,9 @@
 # TODO:
 - [ ] Try increasing rips dimension / tweaking eps
-- [ ] Transform persistence diagram and export features
-- [ ] concatenate with embeddings
-- [ ] train model with baseline and TDA 
+- [ ] Transform persistence diagram
+- [ ] concatenate persistence diagram with embeddings
+- [ ] train model with baseline and TDA
+- [ ] Try using weighted persistence diagram? 
 - [ ] plot findings
 - [ ] write script to automate this process for reproducibility
 
