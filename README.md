@@ -2,8 +2,9 @@
 - [X] Try increasing rips dimension
 - [X] Transform persistence diagram
 - [X] concatenate persistence diagram with embeddings
-- [ ] Verify concatenation
-- [ ] train model with baseline and TDA
+- [X] train model with baseline
+- [ ] Verify how to concatenate TDA features
+- [ ] train model with enhanced TDA
 - [ ] Try using weighted persistence diagram? or tweaking eps?
 - [ ] plot cdf/time series of findings
 - [ ] write script to automate this process for reproducibility
