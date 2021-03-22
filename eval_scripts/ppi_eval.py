@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 Run this script after running unsupervised training.
 Baseline of using features-only can be run by setting data_dir as 'feat'
 Example:
-  python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test
+  python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test > results.txt
 '''
 
 def run_regression(train_embeds, train_labels, test_embeds, test_labels):
