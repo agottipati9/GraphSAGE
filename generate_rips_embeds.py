@@ -13,6 +13,7 @@ print("COLS: ", train_embed.columns)
 rips = Rips()
 
 # Transform
+print("Generating rips barcodes... This may take a while.")
 diagrams = rips.fit_transform(train_embed)
 lifetime_dim0_pts = diagrams[0][:, 1] - diagrams[0][:, 0] 
 lifetime_dim1_pts = diagrams[1][:, 1] - diagrams[1][:, 0]
