@@ -26,9 +26,6 @@ def run_regression(train_embeds, train_labels, test_embeds, test_labels):
     log.fit(train_embeds, train_labels)
     f1 = 0
     for i in range(test_labels.shape[1]):
-        print("DEBUG TARGET ", test_labels[:,i])
-        print(test_embeds.max())
-        print("DEBUG PRED ", log.predict(test_embeds)[:,i])
         print("F1 score", f1_score(test_labels[:,i], log.predict(test_embeds)[:,i], average="micro"))
     for i in range(test_labels.shape[1]):
         print("Random baseline F1 score", f1_score(test_labels[:,i], dummy.predict(test_embeds)[:,i], average="micro"))

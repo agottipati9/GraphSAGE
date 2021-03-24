@@ -18,6 +18,20 @@ diagrams = rips.fit_transform(train_embed)
 lifetime_dim0_pts = diagrams[0][:, 1] - diagrams[0][:, 0] 
 lifetime_dim1_pts = diagrams[1][:, 1] - diagrams[1][:, 0]
 
+# Replace NaN in dim0
+i = np.argwhere(~np.isfinite(lifetime_dim0_pts))
+if (len(i) > 0):
+    print('Cleaning dim0...')
+    lifetime_dim0_pts[i] = lifetime_dim0_pts.min() # Set NaNs to lowest real value
+    lifetime_dim0_pts[i] = lifetime_dim0_pts.max() + .01 # Replace NaNs with largest value
+
+# Replace NaN in dim0
+i = np.argwhere(~np.isfinite(lifetime_dim1_pts))
+if (len(i) > 0):
+    print('Cleaning dim1...')
+    lifetime_dim1_pts[i] = lifetime_dim1_pts.min() # Set NaNs to lowest real value
+    lifetime_dim1_pts[i] = lifetime_dim1_pts.max() + .01 # Replace NaNs with largest value
+
 # Concatenate embeds
 train_embed['birth_dim0'] = pd.Series(data=diagrams[0][:, 0])
 train_embed['lifetime_dim0'] = pd.Series(data=lifetime_dim0_pts)
