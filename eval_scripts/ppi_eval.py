@@ -102,7 +102,7 @@ if __name__ == '__main__':
         test_embeds = embeds[[id_map[id] for id in test_ids]][:1000] # using only 8k for sake of computation
         
         # Save for TDA
-        temp = np.concatenate((train_embeds[:7000], test_embeds[:1000])) # using only 8k for sake of computation
+        temp = np.concatenate((train_embeds, test_embeds)) # using only 8k for sake of computation
         df = pd.DataFrame(data=temp.astype(float))
         df.to_csv('point_cloud_embeds.csv', sep=',', header=False, index=False)
 
