@@ -60,7 +60,7 @@ If you do not have [docker](https://docs.docker.com/) installed, you will need t
 You can run GraphSage inside a [docker](https://docs.docker.com/) image. After cloning the project, build and run the image as following:
 
 	$ docker build -t graphsage .
-	$ docker run -it graphsage bash
+	$ docker run -it -p 8888:8888 graphsage bash
 
 or start a Jupyter Notebook instead of bash:
 
