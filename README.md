@@ -1,11 +1,12 @@
 # TODO:
-- [X] Try increasing rips dimension
+- [X] Explore Rips Code
 - [X] Transform persistence diagram
 - [X] concatenate persistence diagram with embeddings
-- [X] train model with baseline
-- [ ] Verify how to concatenate TDA features
-- [ ] train model with enhanced TDA
-- [ ] Try using weighted persistence diagram? or tweaking eps?
+- [X] train model with baseline for intermediate report
+- [ ] Clean data for Graph classifcation
+- [ ] Verify how to concatenate TDA features for point cloud filtration
+- [ ] Try using weighted persistence diagram, tweaking eps, or increasing rips dimension?
+- [ ] train graph classifier model with enhanced TDA
 - [ ] plot cdf/time series of findings
 - [ ] write script to automate this process for reproducibility
 
