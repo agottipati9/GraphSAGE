@@ -6,8 +6,8 @@ from ripser import Rips
 
 feat_cols = ['feat-{}'.format(i) for i in range(256)]
 train_embed = pd.read_csv('point_cloud_embeds.csv', names=feat_cols)
-print("SHAPE: ", train_embed.shape)
-print("COLS: ", train_embed.columns)
+# print("SHAPE: ", train_embed.shape)
+# print("COLS: ", train_embed.columns)
 
 # rips = Rips(maxdim=2)
 rips = Rips()
@@ -39,8 +39,9 @@ train_embed['birth_dim1'] = pd.Series(data=diagrams[1][:, 0])
 train_embed['lifetime_dim1'] = pd.Series(data=lifetime_dim1_pts)
 # train_embed['birth_dim2'] = pd.Series(data=diagrams[2][:, 0])
 # train_embed['lifetime_dim2'] = pd.Series(data=lifetime_dim2_pts)
-print("COLS: ", train_embed.columns)
+# print("COLS: ", train_embed.columns)
 
 # Save embeds
+print('Saving tda_embeds.csv...')
 df = pd.DataFrame(data=train_embed.astype(float))
 df.to_csv('tda_embeds.csv', sep=',', header=False, index=False)
