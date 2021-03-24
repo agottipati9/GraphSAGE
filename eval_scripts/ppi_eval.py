@@ -26,9 +26,9 @@ def run_regression(train_embeds, train_labels, test_embeds, test_labels):
     log.fit(train_embeds, train_labels)
     f1 = 0
     for i in range(test_labels.shape[1]):
-        print("TARGET ", test_labels[:,i])
+        print("DEBUG TARGET ", test_labels[:,i])
         print(test_embeds.max())
-        print("PRED ", log.predict(test_embeds)[:,i])
+        print("DEBUG PRED ", log.predict(test_embeds)[:,i])
         print("F1 score", f1_score(test_labels[:,i], log.predict(test_embeds)[:,i], average="micro"))
     for i in range(test_labels.shape[1]):
         print("Random baseline F1 score", f1_score(test_labels[:,i], dummy.predict(test_embeds)[:,i], average="micro"))
@@ -91,20 +91,20 @@ if __name__ == '__main__':
         train_embeds = embeds[:7000] # using only 8k for sake of computation
         test_embeds = embeds[7000:] # using only 8k for sake of computation
         print("Running regression..")
-        run_regression(train_embeds, train_labels[:7000], test_embeds, test_labels[:1000])
+        run_regression(train_embeds, train_labels[:7000], test_embeds, test_labels[:1000]) # using only 8k for sake of computation
     else:
         embeds = np.load(data_dir + "/val.npy")
         id_map = {}
         with open(data_dir + "/val.txt") as fp:
             for i, line in enumerate(fp):
                 id_map[int(line.strip())] = i
-        train_embeds = embeds[[id_map[id] for id in train_ids]][:7000]
-        test_embeds = embeds[[id_map[id] for id in test_ids]][:1000]
+        train_embeds = embeds[[id_map[id] for id in train_ids]][:7000] # using only 8k for sake of computation
+        test_embeds = embeds[[id_map[id] for id in test_ids]][:1000] # using only 8k for sake of computation
         
         # Save for TDA
-        temp = np.concatenate((train_embeds[:7000], test_embeds[:1000]))
+        temp = np.concatenate((train_embeds[:7000], test_embeds[:1000])) # using only 8k for sake of computation
         df = pd.DataFrame(data=temp.astype(float))
         df.to_csv('point_cloud_embeds.csv', sep=',', header=False, index=False)
 
         print("Running regression..")
-        run_regression(train_embeds, train_labels[:7000], test_embeds, test_labels[:1000])
+        run_regression(train_embeds, train_labels[:7000], test_embeds, test_labels[:1000]) # using only 8k for sake of computation
