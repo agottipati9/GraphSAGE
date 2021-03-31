@@ -1,14 +1,23 @@
+# Reproduce
+./example_unsupervised.sh
+python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test no > results.txt
+python ./generate_rips_embeds.py
+python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test yes > results_tda.txt
+Then you can run the Plot_Metrics and Visualization notebooks
+
 # TODO:
 - [X] Explore Rips Code
 - [X] Transform persistence diagram
 - [X] concatenate persistence diagram with embeddings
 - [X] train model with baseline for intermediate report
 - [ ] Clean data for Graph classifcation
-- [ ] Verify how to concatenate TDA features for point cloud filtration
-- [ ] Try using weighted persistence diagram, tweaking eps, or increasing rips dimension?
 - [ ] train graph classifier model with enhanced TDA
 - [ ] plot cdf/time series of findings
 - [ ] write script to automate this process for reproducibility
+- [ ] Verify how to concatenate TDA features for point cloud filtration
+- [ ] Try using weighted persistence diagram, tweaking eps, or increasing rips dimension?
+- [ ] Try using real datasets
+
 
 
 ## GraphSage: Representation Learning on Large Graphs
