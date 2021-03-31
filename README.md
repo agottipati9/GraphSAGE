@@ -1,9 +1,9 @@
 # Reproduce
-./example_unsupervised.sh
-python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test no > results.txt
-python ./generate_rips_embeds.py
-python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test yes > results_tda.txt
-Then you can run the Plot_Metrics and Visualization notebooks
+./example_unsupervised.sh <br>
+python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test no > results.txt <br>
+python ./generate_rips_embeds.py <br>
+python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test yes > results_tda.txt <br>
+Then you can run the Plot_Metrics and Visualization notebooks <br>
 
 # TODO:
 - [X] Explore Rips Code
