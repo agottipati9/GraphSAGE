@@ -13,9 +13,10 @@ Then you can run the Plot_Metrics and Visualization notebooks <br>
 - [ ] Clean data for Graph classifcation
 - [ ] train graph classifier model with enhanced TDA
 - [ ] plot cdf/time series of findings
+- [ ] compute p-values
 - [ ] write script to automate this process for reproducibility
 - [ ] Verify how to concatenate TDA features for point cloud filtration
-- [ ] Try using weighted persistence diagram, tweaking eps, or increasing rips dimension?
+- [ ] Try using weighted persistence diagram, tweaking eps, increasing rips dimension, persistence scale space?
 - [ ] Try using real datasets
 
 
