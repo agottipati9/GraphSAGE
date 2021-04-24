@@ -1,3 +1,4 @@
+  
 from __future__ import print_function
 
 import numpy as np
@@ -16,13 +17,17 @@ assert (major <= 1) and (minor <= 11), "networkx major version > 1.11"
 WALK_LEN=5
 N_WALKS=50
 
-def load_data(prefix, normalize=True, load_walks=False):
+def load_data(prefix, normalize=True, load_walks=False, n_nodes=100):
     G_data = json.load(open(prefix + "-G.json"))
     G = json_graph.node_link_graph(G_data)
     if isinstance(G.nodes()[0], int):
         conversion = lambda n : int(n)
     else:
         conversion = lambda n : n
+    
+    # Sample Subgraph
+    nodes = random.sample(G.nodes(), n_nodes)
+    G = G.subgraph(nodes)
 
     if os.path.exists(prefix + "-feats.npy"):
         feats = np.load(prefix + "-feats.npy")
