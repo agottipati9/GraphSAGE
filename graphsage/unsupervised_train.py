@@ -113,8 +113,11 @@ def save_val_embeddings(sess, model, minibatch_iter, size, out_dir, mod=""):
                 seen.add(edge[0])
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
+    if not os.path.exists('/notebooks/subgraphs'):
+        os.makedirs('/notebooks/subgraphs')
     val_embeddings = np.vstack(val_embeddings)
     np.save(out_dir + FLAGS.name + mod + ".npy",  val_embeddings)
+    np.save('/notebooks/subgraphs/' + FLAGS.name + mod + ".npy",  val_embeddings)
     with open(out_dir + name + mod + ".txt", "w") as fp:
         fp.write("\n".join(map(str,nodes)))
 
@@ -377,7 +380,7 @@ def train(train_data, test_data=None):
 
 def main(argv=None):
     print("Loading training data..")
-    train_data = load_data(FLAGS.train_prefix, n_nodes=FLAGS.num_nodes, load_walks=True)
+    train_data = load_data(FLAGS.train_prefix, n_nodes=FLAGS.num_nodes, load_walks=True, graph_file=FLAGS.name)
     print("Done loading training data..")
     train(train_data)
 

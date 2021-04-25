@@ -4,6 +4,7 @@ from __future__ import print_function
 import numpy as np
 import random
 import json
+import pickle
 import sys
 import os
 
@@ -17,7 +18,7 @@ assert (major <= 1) and (minor <= 11), "networkx major version > 1.11"
 WALK_LEN=5
 N_WALKS=50
 
-def load_data(prefix, normalize=True, load_walks=False, n_nodes=100):
+def load_data(prefix, normalize=True, load_walks=False, n_nodes=100, graph_file='val'):
     G_data = json.load(open(prefix + "-G.json"))
     G = json_graph.node_link_graph(G_data)
     if isinstance(G.nodes()[0], int):
@@ -25,10 +26,14 @@ def load_data(prefix, normalize=True, load_walks=False, n_nodes=100):
     else:
         conversion = lambda n : n
     
-    # Sample Subgraph
+    # Sample Subgraph and Save
     nodes = random.sample(G.nodes(), n_nodes)
     G = G.subgraph(nodes)
-
+    if not os.path.exists('/notebooks/subgraphs'):
+        os.makedirs('/notebooks/subgraphs')
+    with open('/notebooks/subgraphs/{}_graph.pkl'.format(graph_file), 'wb') as f:
+        pickle.dump(G, f)
+    
     if os.path.exists(prefix + "-feats.npy"):
         feats = np.load(prefix + "-feats.npy")
     else:
