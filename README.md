@@ -1,8 +1,5 @@
 # Reproduce
-./example_unsupervised.sh <br>
-python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test no > results.txt <br>
-python ./generate_rips_embeds.py <br>
-python eval_scripts/ppi_eval.py ./example_data/toy unsup-example_data/graphsage_mean_small_0.000010 test yes > results_tda.txt <br>
+./run_tda_eval.sh [n graphs] [n_nodes]
 Then you can run the Plot_Metrics and Visualization notebooks <br>
 
 # TODO:
