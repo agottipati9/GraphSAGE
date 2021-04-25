@@ -1,18 +1,18 @@
 # Reproduce
-./run_tda_eval.sh [n graphs] [n_nodes]
-Then you can run the Plot_Metrics and Visualization notebooks <br>
+./run_tda_eval.sh [n graphs] [n_nodes] <br>
+Then you can run the Plot_Metrics and Visualization notebooks
 
 # TODO:
 - [X] Explore Rips Code
 - [X] Transform persistence diagram
 - [X] concatenate persistence diagram with embeddings
 - [X] train model with baseline for intermediate report
-- [ ] Clean data for Graph classifcation
-- [ ] train graph classifier model with enhanced TDA
-- [ ] plot cdf/time series of findings
-- [ ] compute p-values
-- [ ] write script to automate this process for reproducibility
-- [ ] Verify how to concatenate TDA features for point cloud filtration
+- [X] Clean data for Graph classifcation
+- [X] train graph classifier model with enhanced TDA
+- [X] plot cdf/time series of findings
+- [X] write script to automate this process for reproducibility
+- [X] Verify how to concatenate TDA features for point cloud filtration
+- [ ] compute p-values?
 - [ ] Try using weighted persistence diagram, tweaking eps, increasing rips dimension, persistence scale space?
 - [ ] Try using real datasets
 
