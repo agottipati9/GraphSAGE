@@ -9,6 +9,7 @@ import glob
 import os
 import pandas as pd
 from ripser import Rips
+from sklearn.preprocessing import MinMaxScaler
 
 def node_to_graph(file_name='val', label_op='avg'):
     # Load in node embeddings, node labels, subgraph
@@ -41,10 +42,13 @@ def tda_features(nodes):
     feat_cols = ['feat-{}'.format(i) for i in range(nodes.shape[1])]
     embeds = pd.DataFrame(nodes, columns=feat_cols)
     rips = Rips()
+    scaler = MinMaxScaler()
 
     # Transform
     print("Generating rips barcodes... This may take a while.")
     diagrams = rips.fit_transform(embeds)
+    birth_dim0 = diagrams[0][:, 0]
+    birth_dim1 = diagrams[1][:, 0]
     lifetime_dim0_pts = diagrams[0][:, 1] - diagrams[0][:, 0] 
     lifetime_dim1_pts = diagrams[1][:, 1] - diagrams[1][:, 0]
 
@@ -63,10 +67,12 @@ def tda_features(nodes):
         lifetime_dim1_pts[i] = lifetime_dim1_pts.max() + 1.0 # Replace NaNs with largest value
         
     # Concatenate tda features to embeds
-    embeds['birth_dim0'] = pd.Series(data=diagrams[0][:, 0])
-    embeds['lifetime_dim0'] = pd.Series(data=lifetime_dim0_pts)
-    embeds['birth_dim1'] = pd.Series(data=diagrams[1][:, 0])
-    embeds['lifetime_dim1'] = pd.Series(data=lifetime_dim1_pts)
+    birth_dim0[birth_dim0 <= 0] = 1e-7
+    birth_dim1[birth_dim1 <= 0] = 1e-7
+    embeds['birth_dim0'] = pd.Series(data=scaler.fit_transform(np.reciprocal(birth_dim0)))
+    embeds['lifetime_dim0'] = pd.Series(data=scaler.fit_transform(lifetime_dim0_pts))
+    embeds['birth_dim1'] = pd.Series(data=scaler.fit_transform(np.reciprocal(birth_dim1)))
+    embeds['lifetime_dim1'] = pd.Series(data=scaler.fit_transform(lifetime_dim1_pts))
     # embeds['birth_dim2'] = pd.Series(data=diagrams[2][:, 0])
     # embeds['lifetime_dim2'] = pd.Series(data=lifetime_dim2_pts)
     embeds.fillna(0, inplace=True)
