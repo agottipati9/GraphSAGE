@@ -75,8 +75,8 @@ def tda_features(nodes):
     birth_dim1 = np.reciprocal(birth_dim1)
 
     # MinMax scaling
-    birth_dim0 = scaler.fit_transform(birth_dim0.reshape(-1, 1))
-    birth_dim1 = scaler.fit_transform(birth_dim1.reshape(-1, 1))
+    birth_dim0 = scaler.fit_transform(birth_dim0.reshape(-1, 1)).flatten()
+    birth_dim1 = scaler.fit_transform(birth_dim1.reshape(-1, 1)).flatten()
     lifetime_dim0_pts = scaler.fit_transform(lifetime_dim0_pts.reshape(-1, 1)).flatten()
     lifetime_dim1_pts = scaler.fit_transform(lifetime_dim1_pts.reshape(-1, 1)).flatten()
 
