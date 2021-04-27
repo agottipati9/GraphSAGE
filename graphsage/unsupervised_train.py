@@ -266,7 +266,7 @@ def train(train_data, test_data=None):
         minibatch.shuffle() 
 
         iter = 0
-        print('Epoch: %04d' % (epoch + 1))
+        #print('Epoch: %04d' % (epoch + 1))
         epoch_val_costs.append(0)
         while not minibatch.end():
             # Construct feed dictionary
@@ -301,15 +301,15 @@ def train(train_data, test_data=None):
             # Print results
             avg_time = (avg_time * total_steps + time.time() - t) / (total_steps + 1)
 
-            if total_steps % FLAGS.print_every == 0:
-                print("Iter:", '%04d' % iter, 
-                      "train_loss=", "{:.5f}".format(train_cost),
-                      "train_mrr=", "{:.5f}".format(train_mrr), 
-                      "train_mrr_ema=", "{:.5f}".format(train_shadow_mrr), # exponential moving average
-                      "val_loss=", "{:.5f}".format(val_cost),
-                      "val_mrr=", "{:.5f}".format(val_mrr), 
-                      "val_mrr_ema=", "{:.5f}".format(shadow_mrr), # exponential moving average
-                      "time=", "{:.5f}".format(avg_time))
+            #if total_steps % FLAGS.print_every == 0:
+                #print("Iter:", '%04d' % iter, 
+                      #"train_loss=", "{:.5f}".format(train_cost),
+                      #"train_mrr=", "{:.5f}".format(train_mrr), 
+                      #"train_mrr_ema=", "{:.5f}".format(train_shadow_mrr), # exponential moving average
+                      #"val_loss=", "{:.5f}".format(val_cost),
+                      #"val_mrr=", "{:.5f}".format(val_mrr), 
+                      #"val_mrr_ema=", "{:.5f}".format(shadow_mrr), # exponential moving average
+                      #"time=", "{:.5f}".format(avg_time))
 
             iter += 1
             total_steps += 1
@@ -320,7 +320,7 @@ def train(train_data, test_data=None):
         if total_steps > FLAGS.max_total_steps:
                 break
     
-    print("Optimization Finished!")
+    #print("Optimization Finished!")
     if FLAGS.save_embeddings:
         sess.run(val_adj_info.op)
 
@@ -379,9 +379,9 @@ def train(train_data, test_data=None):
     
 
 def main(argv=None):
-    print("Loading training data..")
+    #print("Loading training data..")
     train_data = load_data(FLAGS.train_prefix, n_nodes=FLAGS.num_nodes, load_walks=True, graph_file=FLAGS.name)
-    print("Done loading training data..")
+    #print("Done loading training data..")
     train(train_data)
 
 if __name__ == '__main__':
