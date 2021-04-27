@@ -57,11 +57,11 @@ def load_data(prefix, normalize=True, load_walks=False, n_nodes=100, graph_file=
         if not 'val' in G.node[node] or not 'test' in G.node[node]:
             G.remove_node(node)
             broken_count += 1
-    print("Removed {:d} nodes that lacked proper annotations due to networkx versioning issues".format(broken_count))
+    # print("Removed {:d} nodes that lacked proper annotations due to networkx versioning issues".format(broken_count))
 
     ## Make sure the graph has edge train_removed annotations
     ## (some datasets might already have this..)
-    print("Loaded data.. now preprocessing..")
+    # print("Loaded data.. now preprocessing..")
     for edge in G.edges():
         if (G.node[edge[0]]['val'] or G.node[edge[1]]['val'] or
             G.node[edge[0]]['test'] or G.node[edge[1]]['test']):
