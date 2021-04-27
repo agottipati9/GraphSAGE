@@ -69,6 +69,10 @@ You can run GraphSage inside a [docker](https://docs.docker.com/) image. After c
 
 	$ docker build -t graphsage .
 	$ docker run -it -p 8888:8888 graphsage bash
+	
+or change the mount point of the container:
+
+	$ docker run -v /mydata/GraphSAGE:/notebooks -it -p 8888:8888 graphsage bash
 
 or start a Jupyter Notebook instead of bash:
 
