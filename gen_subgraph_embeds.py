@@ -49,7 +49,7 @@ def tda_features(nodes):
     diagrams = rips.fit_transform(embeds)
     birth_dim0 = diagrams[0][:, 0]
     birth_dim1 = diagrams[1][:, 0]
-    lifetime_dim0_pts = diagrams[0][:, 1] - diagrams[0][:, 0] 
+    lifetime_dim0_pts = diagrams[0][:, 1] - diagrams[0][:, 0]
     lifetime_dim1_pts = diagrams[1][:, 1] - diagrams[1][:, 0]
 
     # Replace NaN in dim0
@@ -65,14 +65,26 @@ def tda_features(nodes):
         print('Cleaning dim1...')
         lifetime_dim1_pts[i] = lifetime_dim1_pts.min() # Set NaNs to lowest real value
         lifetime_dim1_pts[i] = lifetime_dim1_pts.max() + 1.0 # Replace NaNs with largest value
-        
-    # Concatenate tda features to embeds
+
+    # Remove 0s
     birth_dim0[birth_dim0 <= 0] = 1e-7
     birth_dim1[birth_dim1 <= 0] = 1e-7
-    embeds['birth_dim0'] = pd.Series(data=scaler.fit_transform(np.reciprocal(birth_dim0)))
-    embeds['lifetime_dim0'] = pd.Series(data=scaler.fit_transform(lifetime_dim0_pts))
-    embeds['birth_dim1'] = pd.Series(data=scaler.fit_transform(np.reciprocal(birth_dim1)))
-    embeds['lifetime_dim1'] = pd.Series(data=scaler.fit_transform(lifetime_dim1_pts))
+
+    # Weight birth times
+    birth_dim0 = np.reciprocal(birth_dim0)
+    birth_dim1 = np.reciprocal(birth_dim1)
+
+    # MinMax scaling
+    birth_dim0 = scaler.fit_transform(birth_dim0.reshape(-1, 1))
+    birth_dim1 = scaler.fit_transform(birth_dim1.reshape(-1, 1))
+    lifetime_dim0_pts = scaler.fit_transform(lifetime_dim0_pts.reshape(-1, 1))
+    lifetime_dim1_pts = scaler.fit_transform(lifetime_dim1_pts.reshape(-1, 1))
+
+    # Concatenate tda features to embeds
+    embeds['birth_dim0'] = pd.Series(data=birth_dim0)
+    embeds['lifetime_dim0'] = pd.Series(data=lifetime_dim0_pts)
+    embeds['birth_dim1'] = pd.Series(data=birth_dim1)
+    embeds['lifetime_dim1'] = pd.Series(data=lifetime_dim1_pts)
     # embeds['birth_dim2'] = pd.Series(data=diagrams[2][:, 0])
     # embeds['lifetime_dim2'] = pd.Series(data=lifetime_dim2_pts)
     embeds.fillna(0, inplace=True)
