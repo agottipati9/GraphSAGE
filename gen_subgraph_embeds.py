@@ -69,7 +69,7 @@ def tda_features(nodes):
     embeds['lifetime_dim1'] = pd.Series(data=lifetime_dim1_pts)
     # embeds['birth_dim2'] = pd.Series(data=diagrams[2][:, 0])
     # embeds['lifetime_dim2'] = pd.Series(data=lifetime_dim2_pts)
-    embeds.fillna(embeds.max(axis=0), inplace=True)
+    embeds.fillna(0, inplace=True)
     return embeds.values
 
 def get_graph_data(label_op='avg'):
